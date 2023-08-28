@@ -6,4 +6,4 @@ A new Flutter project. Meals app is a flutter app that displays a list of meals 
 - How to use `Navigation` to navigate between screens.
 - How to use `Stack` to stack widgets.
 - How to build more complex widgets and screens.
-- How to use new widgets such as `InkWell`, `Positioned`, and `MaterialPageRoute`.
+- How to use new widgets such as `InkWell`, `Positioned`, `Grid` and `MaterialPageRoute`.
