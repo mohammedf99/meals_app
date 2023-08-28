@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import 'screens/categories_screen.dart';
 import './theme.dart';
 
@@ -14,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: theme,
       home: const CategoriesScreen(),
     );
