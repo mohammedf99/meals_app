@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'screens/categories_screen.dart';
 import './theme.dart';
+import './screens/tabs.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: const CategoriesScreen(),
+      // home: const CategoriesScreen(),
+      home: const TabsScreen(),
     );
   }
 }
