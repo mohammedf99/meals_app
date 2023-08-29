@@ -2,31 +2,55 @@ import 'package:flutter/material.dart';
 
 import '../widgets/meal_item.dart';
 import '../models/meal.dart';
+import './meal_details_screen.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.title, required this.meals});
+  const MealsScreen(
+      {super.key,
+      this.title,
+      required this.meals,
+      required this.onToggleFavorite});
 
-  final String title;
+  final String? title;
   final List<Meal> meals;
+  final void Function(Meal meal) onToggleFavorite;
 
-
+  void _onSelectMealDetail(BuildContext context, Meal meal) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (ctx) => MealDetailsScreen(
+          meal: meal,
+          onToggleFavorite: onToggleFavorite,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-
-    Widget mainContent = ListView.builder(itemBuilder: (context, index) {
-      return MealItem(meal: meals[index]);
-    }, itemCount: meals.length,);
+    Widget mainContent = ListView.builder(
+      itemBuilder: (context, index) {
+        return MealItem(meal: meals[index], onSelectedTab: _onSelectMealDetail);
+      },
+      itemCount: meals.length,
+    );
 
     if (meals.isEmpty) {
       mainContent = const Center(
-        child: Text('No meals found, please check your filters!', style: TextStyle(color: Colors.white),),
+        child: Text(
+          'No meals found, please check your filters!',
+          style: TextStyle(color: Colors.white),
+        ),
       );
+    }
+
+    if (title == null) {
+      return mainContent;
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(title!),
       ),
       body: mainContent,
     );
