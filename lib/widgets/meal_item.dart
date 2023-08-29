@@ -5,9 +5,10 @@ import '../models/meal.dart';
 import '../widgets/meal_item_trait.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({super.key, required this.meal});
+  const MealItem({super.key, required this.meal, required this.onSelectedTab});
 
   final Meal meal;
+  final void Function(BuildContext context, Meal meal) onSelectedTab;
 
   String get complexityText {
     return meal.complexity.name[0].toUpperCase() +
@@ -29,7 +30,7 @@ class MealItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: InkWell(
-        onTap: () {},
+        onTap: () => onSelectedTab(context, meal),
         child: Stack(
           children: [
             FadeInImage(
