@@ -64,7 +64,9 @@ class _TabsScreenState extends State<TabsScreen> {
       // Navigator.of(context).pushReplacement(...); to replace the current screen. the back button will be gone.
       final result = await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(
-          builder: (ctx) => FiltersScreen(selectedFilters: _selectedFilters,),
+          builder: (ctx) => FiltersScreen(
+            selectedFilters: _selectedFilters,
+          ),
         ),
       );
 
