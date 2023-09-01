@@ -13,3 +13,5 @@ A new Flutter project. Meals app is a flutter app that displays a list of meals 
 - How to use `??` operator to check for null values.
 - How to use `SwitchListTile` to create a switch.
 - How to use `initState` to initialize data.
+- How to use `Riverpod` to manage state.
+- How to use `Provider` with `StateNotifier` to manage more compex state.
