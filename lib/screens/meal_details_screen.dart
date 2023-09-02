@@ -14,12 +14,13 @@ class MealDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isMealFavorite = ref.watch(favoriteMealsProvider).contains(meal);
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () {  
               final wasAdded = ref
                   .read(favoriteMealsProvider.notifier)
                   .toggleMealFavoriteStatus(meal);
@@ -31,10 +32,10 @@ class MealDetailsScreen extends ConsumerWidget {
                 backgroundColor: wasAdded ? Colors.green : Colors.red,
               ));
             },
-            icon: const Icon(Icons.star),
+            icon: Icon(isMealFavorite ? Icons.star : Icons.star_border),
           ),
         ],
-      ),
+      ), 
       body: SingleChildScrollView(
         child: Column(
           children: [
