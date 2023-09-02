@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals_app/provider/filters_provider.dart';
 
+import './meals_provider.dart';
 import '../models/meal.dart';
 
 class FavoriteMealsNotifier extends StateNotifier<List<Meal>> {
@@ -23,3 +25,23 @@ class FavoriteMealsNotifier extends StateNotifier<List<Meal>> {
 final favoriteMealsProvider =
     StateNotifierProvider<FavoriteMealsNotifier, List<Meal>>(
         (ref) => FavoriteMealsNotifier());
+
+final filteredMealProvider = Provider((ref) {
+  final meals = ref.watch(mealsProvider);
+  final activeFilters = ref.watch(filtersProvider);
+  return meals.where((meal) {
+    if (activeFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
+      return false;
+    }
+    if (activeFilters[Filter.lactoseFree]! && !meal.isLactoseFree) {
+      return false;
+    }
+    if (activeFilters[Filter.vegeterian]! && !meal.isVegetarian) {
+      return false;
+    }
+    if (activeFilters[Filter.vegan]! && !meal.isVegan) {
+      return false;
+    }
+    return true;
+  }).toList();
+});
