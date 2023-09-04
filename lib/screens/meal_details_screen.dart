@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +22,7 @@ class MealDetailsScreen extends ConsumerWidget {
         title: Text(meal.title),
         actions: [
           IconButton(
-            onPressed: () {  
+            onPressed: () {
               final wasAdded = ref
                   .read(favoriteMealsProvider.notifier)
                   .toggleMealFavoriteStatus(meal);
@@ -32,10 +34,23 @@ class MealDetailsScreen extends ConsumerWidget {
                 backgroundColor: wasAdded ? Colors.green : Colors.red,
               ));
             },
-            icon: Icon(isMealFavorite ? Icons.star : Icons.star_border),
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  // turns: animation, gives full turn animation between 0 and 1.
+                  turns: Tween<double>(begin: 0.5, end: 1).animate(animation),
+                  child: child,
+                );
+              },
+              child: Icon(
+                isMealFavorite ? Icons.star : Icons.star_border,
+                key: ValueKey(isMealFavorite),
+              ),
+            ),
           ),
         ],
-      ), 
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
