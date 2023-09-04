@@ -24,3 +24,5 @@ A new Flutter project. Meals app is a flutter app that displays a list of meals 
 - How to use both `Explicit` and `Implicit` animations.
 - How to use `AnimationController` to control animations.
 - How to use `AnimatedBuilder` to build animations.
+- How to use `AnimatedSwitch` to switch between widgets.
+- How to use `Hero` to create multi-screen animations.
